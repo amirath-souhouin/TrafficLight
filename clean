@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# Look for all the java files
+# and then compile them on Linux / Mac.
+#
+# Untested on windows
+
+find . -name "*.class" | xargs rm

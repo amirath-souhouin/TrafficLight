@@ -1,0 +1,68 @@
+namespace trafficsim.core;
+
+external interface EventHandler {}
+
+class TrafficLight {
+  isA EventHandler;
+
+  TrafficLightManager trafficLightManager;
+
+  after constructor {
+    trafficLightManager.addEventHandler(this);
+  }
+
+  status {
+  
+  	lowTraffic{
+  		entry
+  	
+  	}
+    northAndSouthGreen {
+      entry / { trafficLightManager.northGreen(); }
+      entry / { trafficLightManager.southGreen(); }
+      entry / { trafficLightManager.westRed(); }
+      entry / { trafficLightManager.eastRed(); }
+      timerGreen() -> northAndSouthYellow;
+    }
+
+    northAndSouthYellow {
+      entry / { trafficLightManager.northYellow(); }
+      entry / { trafficLightManager.southYellow(); }
+      entry / { trafficLightManager.westRed(); }
+      entry / { trafficLightManager.eastRed(); }
+      timerYellow() -> northAndSouthRed;
+    }
+
+    northAndSouthRed {
+      entry / { trafficLightManager.northRed(); }
+      entry / { trafficLightManager.southRed(); }
+      entry / { trafficLightManager.westGreen(); }
+      entry / { trafficLightManager.eastGreen(); }
+      timerGreen() -> westAndEastYellow;
+    }
+
+    westAndEastYellow{
+      entry / { trafficLightManager.northRed(); }
+      entry / { trafficLightManager.southRed(); }
+      entry / { trafficLightManager.westYellow(); }
+      entry / { trafficLightManager.eastYellow(); }
+      timerYellow() -> northAndSouthGreen;
+    }
+  }
+
+  @Override
+  public boolean moderateTraffic() {
+    return false;
+  }
+
+  @Override
+  public boolean lowTraffic() {
+    return false;
+  }
+
+  @Override
+  public boolean highTraffic() {
+    return false;
+  }
+
+}

@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# Look for all the java files
+# and then compile them on Windows.
+#
+# Untested, please report errors to aforward@uottawa.ca
+
+java -jar umple.jar TrafficLight.ump
+dir /s /B *.java > sources.txt
+javac @sources.txt

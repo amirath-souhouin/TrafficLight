@@ -1,0 +1,7 @@
+./trafficsim/core/EventHandler.java
+./trafficsim/core/TrafficLightManager.java
+./trafficsim/core/Main.java
+./trafficsim/core/EventGenerator.java
+./trafficsim/core/TrafficLight.java
+./trafficsim/gui/TrafficLightAnimation.java
+./trafficsim/gui/TrafficLightUserInterface.java
